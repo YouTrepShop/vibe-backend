@@ -37,8 +37,8 @@ coverage/
 backend/prisma/migrations/**/migration_lock.toml.bak
 
 # uploads (local dev)
-uploads/
-backend/uploads/
+/uploads/
+/backend/uploads/
 
 # generated
 backend/src/generated/
