@@ -1,0 +1,44 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# env
+.env
+.env.local
+.env.*.local
+**/.env
+!**/.env.example
+
+# build
+dist/
+build/
+.cache/
+.turbo/
+.next/
+.vercel/
+.parcel-cache/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# misc
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tsbuildinfo
+coverage/
+
+# prisma
+backend/prisma/migrations/**/migration_lock.toml.bak
+
+# uploads (local dev)
+uploads/
+backend/uploads/
+
+# generated
+backend/src/generated/

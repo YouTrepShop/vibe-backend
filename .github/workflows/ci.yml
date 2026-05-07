@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install --workspaces --include-workspace-root
+
+      - name: Generate Prisma client
+        working-directory: backend
+        run: npx prisma generate
+
+      - name: Typecheck backend
+        run: npm --workspace backend run typecheck
+
+      - name: Typecheck frontend
+        run: npm --workspace frontend run typecheck
+
+      - name: Build backend
+        run: npm --workspace backend run build
+
+      - name: Build frontend
+        run: npm --workspace frontend run build
+        env:
+          VITE_API_URL: /api
+          VITE_SOCKET_URL: /
+          VITE_APP_NAME: Vibe
